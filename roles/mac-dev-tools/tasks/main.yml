@@ -1,0 +1,83 @@
+---
+# Tasks for roles
+
+#- name: example
+#  action: example
+#  notify:
+#    - restart service
+#  tags:
+#    - example
+
+- name: Ensure installed Homebrew packages are up to date
+  homebrew:
+    update_homebrew: yes
+    upgrade_all: yes
+
+- name: Ensure Node is installed with NPM
+  homebrew:
+    name: node
+    state: latest
+    install_options: with-npm
+
+- name: Ensure Homebrew packages are installed
+  homebrew:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+   - ansible
+   - yarn
+
+- name: Ensure versions cask is installed
+  homebrew_tap:
+    name: caskroom/versions
+
+- name: Ensure dev applications are installed
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  with_items:
+   - atom
+   - docker
+   - eclipse-jee
+   - firefoxnightly
+   - google-chrome-canary
+   - iterm2
+   - java
+   - sourcetree
+   - vagrant
+   - virtualbox
+   - visual-studio-code
+
+- name: Ensure Javascript dev tools are globally installed
+  npm:
+    name: "{{ item }}"
+    state: latest
+    global: yes
+  environment:
+    PATH: "{{ ansible_env.PATH }}:/usr/local/bin/"
+  with_items:
+   - gulp
+   - browser-sync
+
+- name: Ensure Atom plugins are up to date
+  include_role:
+    name: jgkim.atom
+  vars:
+    atom_upgrade_all: true
+    atom_packages:
+     - atom-beautify
+     - atom-typescript
+     - busy-signal
+     - cssbeautify
+     - file-icons
+     - intentions
+     - jade-beautify
+     - language-ansible
+     - language-javascript-jsx
+     - linter
+     - linter-eslint
+     - linter-ui-default
+     - minimap
+     - minimap-find-and-replace
+     - minimap-git-diff
+     - minimap-pigments

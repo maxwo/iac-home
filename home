@@ -1,0 +1,10 @@
+# home inventory
+
+[dev]
+aki.local
+
+[mediacenter]
+natsu.local
+
+[vpn]
+# host

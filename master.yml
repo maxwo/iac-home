@@ -1,0 +1,11 @@
+---
+# master playbook
+
+- hosts: dev
+  roles:
+   - mac-shell
+   - mac-desktop
+   - mac-dev-tools
+- hosts: mediacenter
+  roles:
+   - linux-shell
