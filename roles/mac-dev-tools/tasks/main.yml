@@ -57,6 +57,7 @@
     PATH: "{{ ansible_env.PATH }}:/usr/local/bin/"
   with_items:
    - gulp
+   - grunt
    - browser-sync
 
 - name: Ensure Atom plugins are up to date
