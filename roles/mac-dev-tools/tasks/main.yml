@@ -26,6 +26,10 @@
   with_items:
    - ansible
    - yarn
+   - git
+   - golang
+   - gom
+   - hg
 
 - name: Ensure versions cask is installed
   homebrew_tap:
@@ -59,6 +63,7 @@
    - gulp
    - grunt
    - browser-sync
+   - vue-clie
 
 - name: Ensure Atom plugins are up to date
   include_role:
@@ -75,6 +80,7 @@
      - jade-beautify
      - language-ansible
      - language-javascript-jsx
+     - language-vuejs
      - linter
      - linter-eslint
      - linter-ui-default

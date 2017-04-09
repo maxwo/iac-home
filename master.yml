@@ -9,3 +9,4 @@
 - hosts: mediacenter
   roles:
    - linux-shell
+   - mediacenter-configuration
