@@ -1,0 +1,16 @@
+---
+# Tasks for roles
+
+#- name: example
+#  action: example
+#  notify:
+#    - restart service
+#  tags:
+#    - example
+
+- name: Ensure PWM audio is set to 2
+  lineinfile:
+    path: /boot/config.txt
+    line: audio_pwm_mode=2
+    state: present
+  become_method: sudo
