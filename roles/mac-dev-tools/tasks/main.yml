@@ -13,6 +13,14 @@
     update_homebrew: yes
     upgrade_all: yes
 
+- name: Ensure Travis CLI is installed
+  gem:
+    name: travis
+    state: latest
+  environment:
+    GEM_HOME: ~/.gem
+    GEM_PATH: ~/.gem
+
 - name: Ensure Node is installed with NPM
   homebrew:
     name: node
@@ -63,7 +71,7 @@
    - gulp
    - grunt
    - browser-sync
-   - vue-clie
+   - vue-cli
 
 - name: Ensure Atom plugins are up to date
   include_role:
@@ -80,7 +88,7 @@
      - jade-beautify
      - language-ansible
      - language-javascript-jsx
-     - language-vuejs
+     - language-vue
      - linter
      - linter-eslint
      - linter-ui-default
