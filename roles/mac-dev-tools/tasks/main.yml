@@ -71,6 +71,7 @@
    - gulp
    - grunt
    - browser-sync
+   - "@angular/cli"
    - vue-cli
 
 - name: Ensure Atom plugins are up to date
@@ -86,6 +87,7 @@
      - file-icons
      - intentions
      - jade-beautify
+     - language-docker
      - language-ansible
      - language-javascript-jsx
      - language-vue
