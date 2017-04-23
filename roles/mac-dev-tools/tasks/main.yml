@@ -13,13 +13,16 @@
     update_homebrew: yes
     upgrade_all: yes
 
-- name: Ensure Travis CLI is installed
+- name: Ensure gems are installed
   gem:
-    name: travis
+    name: "{{ item }}"
     state: latest
   environment:
     GEM_HOME: ~/.gem
     GEM_PATH: ~/.gem
+  with_items:
+   - travis
+   - rhc
 
 - name: Ensure Node is installed with NPM
   homebrew:
@@ -68,10 +71,12 @@
   environment:
     PATH: "{{ ansible_env.PATH }}:/usr/local/bin/"
   with_items:
+   - "@angular/cli"
+   - bower
+   - browser-sync
    - gulp
    - grunt
-   - browser-sync
-   - "@angular/cli"
+   - npm-check-updates
    - vue-cli
 
 - name: Ensure Atom plugins are up to date
@@ -89,6 +94,7 @@
      - jade-beautify
      - language-docker
      - language-ansible
+     - language-jade
      - language-javascript-jsx
      - language-vue
      - linter
