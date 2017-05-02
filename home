@@ -2,9 +2,14 @@
 
 [dev]
 127.0.0.1
+aki.local
+haru.local
+
+[photo]
+haru.local
 
 [mediacenter]
 natsu.local
 
 [vpn]
-# host
+koyo.local

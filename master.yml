@@ -4,6 +4,7 @@
 - hosts: dev
   roles:
    - mac-shell
+   - dotfiles-shell
    - mac-desktop
    - mac-dev-tools
 - hosts: mediacenter

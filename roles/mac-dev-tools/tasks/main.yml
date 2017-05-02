@@ -40,6 +40,7 @@
    - git
    - golang
    - gom
+   - gpg
    - hg
 
 - name: Ensure versions cask is installed
@@ -59,6 +60,7 @@
    - iterm2
    - java
    - sourcetree
+   - sublime-text
    - vagrant
    - virtualbox
    - visual-studio-code
@@ -74,8 +76,8 @@
    - "@angular/cli"
    - bower
    - browser-sync
-   - gulp
    - grunt
+   - gulp
    - npm-check-updates
    - vue-cli
 

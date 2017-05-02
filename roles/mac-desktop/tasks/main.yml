@@ -18,6 +18,7 @@
     name: "{{ item }}"
     state: present
   with_items:
+   - dropbox
    - firefox
    - flux
    - google-chrome

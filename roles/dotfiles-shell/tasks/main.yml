@@ -1,0 +1,37 @@
+---
+# Tasks for roles
+
+#- name: example
+#  action: example
+#  notify:
+#    - restart service
+#  tags:
+#    - example
+
+- name: Ensure repository is cloned
+  git:
+    repo: 'https://github.com/maxwo/dotfiles.git'
+    dest: "{{ ansible_env.HOME}}/dotfiles"
+
+- name: Ensure SSH dotfiles symlinks are set with correct permissions
+  file:
+    src: "{{ ansible_env.HOME}}/dotfiles/ssh/{{ item }}"
+    dest: "{{ ansible_env.HOME}}/.ssh/{{ item }}"
+    mode: 0600
+    state: link
+    force: yes
+  with_items:
+    - authorized_keys
+    - config
+    - id_rsa.pub
+
+- name: Ensure dotfiles standard symlinks are set
+  file:
+    src: "{{ ansible_env.HOME}}/dotfiles/ssh/{{ item }}"
+    dest: "{{ ansible_env.HOME}}/.ssh/{{ item }}"
+    state: link
+    force: yes
+  with_items:
+    - authorized_keys
+    - config
+    - id_rsa.pub
