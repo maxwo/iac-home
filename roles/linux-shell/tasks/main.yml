@@ -8,9 +8,14 @@
 #  tags:
 #    - example
 
-- name: Ensure ZSH is up to date
+- name: Ensure base packages are up to date
   apt:
-    name: zsh
+    name: "{{ item }}"
+    update_cache: yes
     state: latest
   become: yes
-  become_method: su
+  environment:
+    PATH: /bin:/sbin:/usr/bin:/usr/sbin
+  with_items:
+   - zsh
+   - git
