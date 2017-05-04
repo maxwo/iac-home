@@ -5,9 +5,11 @@
   roles:
    - mac-shell
    - commons-shell
+   - dotfiles-shell
    - mac-desktop
    - mac-dev-tools
 - hosts: mediacenter
   roles:
    - linux-shell
    - commons-shell
+   - mediacenter-configuration

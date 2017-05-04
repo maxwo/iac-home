@@ -13,6 +13,17 @@
     update_homebrew: yes
     upgrade_all: yes
 
+- name: Ensure gems are installed
+  gem:
+    name: "{{ item }}"
+    state: latest
+  environment:
+    GEM_HOME: ~/.gem
+    GEM_PATH: ~/.gem
+  with_items:
+   - travis
+   - rhc
+
 - name: Ensure Node is installed with NPM
   homebrew:
     name: node
@@ -26,6 +37,11 @@
   with_items:
    - ansible
    - yarn
+   - git
+   - golang
+   - gom
+   - gpg
+   - hg
 
 - name: Ensure versions cask is installed
   homebrew_tap:
@@ -44,6 +60,7 @@
    - iterm2
    - java
    - sourcetree
+   - sublime-text
    - vagrant
    - virtualbox
    - visual-studio-code
@@ -56,8 +73,13 @@
   environment:
     PATH: "{{ ansible_env.PATH }}:/usr/local/bin/"
   with_items:
-   - gulp
+   - "@angular/cli"
+   - bower
    - browser-sync
+   - grunt
+   - gulp
+   - npm-check-updates
+   - vue-cli
 
 - name: Ensure Atom plugins are up to date
   include_role:
@@ -72,8 +94,11 @@
      - file-icons
      - intentions
      - jade-beautify
+     - language-docker
      - language-ansible
+     - language-jade
      - language-javascript-jsx
+     - language-vue
      - linter
      - linter-eslint
      - linter-ui-default
