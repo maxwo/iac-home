@@ -31,11 +31,3 @@
 - name: Ensure dotfiles are present
   include_role:
     name: dotfiles
-
-- name: Ensure addtional OSX packages are installed
-  package:
-    name: "{{ item }}"
-    state: latest
-  when: ansible_os_family == 'Darwin'
-  with_items:
-   - thefuck
