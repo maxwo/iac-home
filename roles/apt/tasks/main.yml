@@ -1,0 +1,16 @@
+---
+# Tasks for roles
+
+#- name: example
+#  action: example
+#  notify:
+#    - restart service
+#  tags:
+#    - example
+
+- name: Ensure APT packages are up to date
+  apt:
+    upgrade: dist
+    update_cache: yes
+    cache_valid_time: 3600
+  become: yes

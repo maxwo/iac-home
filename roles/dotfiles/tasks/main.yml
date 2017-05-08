@@ -26,10 +26,10 @@
 
 - name: Ensure dotfiles standard symlinks are set
   file:
-    src: "{{ ansible_env.HOME }}/dotfiles/ssh/{{ item }}"
-    dest: "{{ ansible_env.HOME }}/.ssh/{{ item }}"
+    src: "{{ ansible_env.HOME }}/dotfiles/{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
     state: link
     force: yes
   with_items:
-    - authorized_keys
-    - config
+    - { src: 'gitconfig', dest: '.gitconfig' }
+    - { src: 'zshrc', dest: '.zshrc' }

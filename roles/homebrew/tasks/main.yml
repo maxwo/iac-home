@@ -8,7 +8,7 @@
 #  tags:
 #    - example
 
-- name: Ensure installed Homebrew packages are up to date
+- name: Ensure Homebrew packages are up to date
   homebrew:
     update_homebrew: yes
     upgrade_all: yes

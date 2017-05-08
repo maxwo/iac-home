@@ -1,13 +1,6 @@
 ---
 # Tasks for roles
 
-#- name: example
-#  action: example
-#  notify:
-#    - restart service
-#  tags:
-#    - example
-
 - name: Ensure Oh My Zsh required packages are installed
   package:
     name: "{{ item }}"
@@ -30,6 +23,19 @@
     creates: "{{ ansible_env.HOME}}/.oh-my-zsh"
     executable: /bin/zsh
 
+- name: Ensure auto-suggestions Zsh plugin is installed
+  git:
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+
 - name: Ensure dotfiles are present
   include_role:
     name: dotfiles
+
+- name: Ensure addtional OSX packages are installed
+  package:
+    name: "{{ item }}"
+    state: latest
+  when: ansible_os_family == 'Darwin'
+  with_items:
+   - thefuck
