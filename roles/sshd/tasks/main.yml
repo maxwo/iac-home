@@ -1,0 +1,10 @@
+---
+# Tasks for roles
+
+- name: Ensure root login is disabled
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    line: 'PermitRootLogin no'
+    regexp: '^PermitRootLogin'
+  become: yes
+  notify: "Restart sshd"
