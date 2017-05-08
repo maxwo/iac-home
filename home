@@ -1,15 +1,15 @@
 # home inventory
 
 [dev]
-127.0.0.1
+zenika.local
 aki.local
 haru.local
 
 [photo]
 haru.local
 
-[mediacenter]
-natsu.local
+# [mediacenter]
+# natsu.local
 
 [vpn]
 koyo.local

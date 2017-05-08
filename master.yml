@@ -3,13 +3,15 @@
 
 - hosts: dev
   roles:
-   - mac-shell
-   - commons-shell
-   - dotfiles-shell
+   - shell
    - mac-desktop
    - mac-dev-tools
+
 - hosts: mediacenter
   roles:
-   - linux-shell
-   - commons-shell
-   - mediacenter-configuration
+   - shell
+   - mediacenter
+
+- hosts: vpn
+  roles:
+   - shell

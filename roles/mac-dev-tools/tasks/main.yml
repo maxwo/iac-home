@@ -8,11 +8,6 @@
 #  tags:
 #    - example
 
-- name: Ensure installed Homebrew packages are up to date
-  homebrew:
-    update_homebrew: yes
-    upgrade_all: yes
-
 - name: Ensure gems are installed
   gem:
     name: "{{ item }}"
@@ -42,6 +37,7 @@
    - gom
    - gpg
    - hg
+   - maven
 
 - name: Ensure versions cask is installed
   homebrew_tap:

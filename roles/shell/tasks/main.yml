@@ -1,0 +1,35 @@
+---
+# Tasks for roles
+
+#- name: example
+#  action: example
+#  notify:
+#    - restart service
+#  tags:
+#    - example
+
+- name: Ensure Oh My Zsh required packages are installed
+  package:
+    name: "{{ item }}"
+    state: latest
+  become: "{{ ansible_os_family != 'Darwin' }}"
+  with_items:
+   - curl
+   - git
+   - zsh
+
+- name: Ensure Zsh is the default shell
+  shell: "chsh -s /bin/zsh {{ansible_user_id}}"
+  become: yes
+  register: chsh_result
+  changed_when: "chsh_result.stderr.find('no changes made') == -1"
+
+- name: Ensure Oh My Zsh is installed
+  shell: "sh -c \"$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)\""
+  args:
+    creates: "{{ ansible_env.HOME}}/.oh-my-zsh"
+    executable: /bin/zsh
+
+- name: Ensure dotfiles are present
+  include_role:
+    name: dotfiles

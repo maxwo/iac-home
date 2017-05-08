@@ -8,11 +8,6 @@
 #  tags:
 #    - example
 
-- name: Ensure installed Homebrew packages are up to date
-  homebrew:
-    update_homebrew: yes
-    upgrade_all: yes
-
 - name: Ensure applications are installed
   homebrew_cask:
     name: "{{ item }}"
