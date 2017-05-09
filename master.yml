@@ -3,19 +3,16 @@
 
 - hosts: dev
   roles:
-   - homebrew
    - shell
    - mac-desktop
    - mac-dev-tools
 
 - hosts: mediacenter
   roles:
-   - apt
    - shell
    - mediacenter
 
 - hosts: vpn
   roles:
-   - apt
    - shell
    - sshd
