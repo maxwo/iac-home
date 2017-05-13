@@ -26,10 +26,15 @@
 
 - name: Ensure dotfiles standard symlinks are set
   file:
-    src: "{{ ansible_env.HOME }}/dotfiles/{{ item.src }}"
-    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+    src: "{{ ansible_env.HOME }}/dotfiles/{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.{{ item }}"
     state: link
     force: yes
   with_items:
-    - { src: 'gitconfig', dest: '.gitconfig' }
-    - { src: 'zshrc', dest: '.zshrc' }
+    - ansible.cfg
+    - curlrc
+    - gitconfig
+    - screenrc
+    - vimrc
+    - wgetrc
+    - zshrc
