@@ -38,3 +38,14 @@
     - vimrc
     - wgetrc
     - zshrc
+
+- name: Ensure user directories exist
+  file:
+    path: "{{ ansible_env.HOME }}/{{ item }}"
+    state: directory
+    mode: 0700
+    recurse: yes
+  with_items:
+    - .vim/backups
+    - .vim/swaps
+    - .vim/undo
