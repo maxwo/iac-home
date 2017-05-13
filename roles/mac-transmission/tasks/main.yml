@@ -1,0 +1,49 @@
+---
+# Tasks for roles
+
+- name: Ensure Transmission is installed
+  homebrew_cask:
+    name: transmission
+    state: present
+
+- name: Ensure Transmission is configured
+  osx_defaults:
+    domain: org.m0k.transmission
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: present
+  with_items:
+    - key: UseIncompleteDownloadFolder
+      type: bool
+      value: true
+    - key: IncompleteDownloadFolder
+      type: string
+      value: "{{ ansible_env.HOME}}/Downloads/Torrents"
+    - key: DownloadLocationConstant
+      type: bool
+      value: true
+    - key: DownloadAsk
+      type: bool
+      value: false
+    - key: MagnetOpenAsk
+      type: bool
+      value: false
+    - key: WarningDonate
+      type: bool
+      value: false
+    - key: WarningLegal
+      type: bool
+      value: false
+    - key: BlocklistNew
+      type: bool
+      value: true
+    - key: BlocklistURL
+      type: string
+      value: http://john.bitsurge.net/public/biglist.p2p.gz
+    - key: BlocklistAutoUpdate
+      type: bool
+      value: true
+    - key: RandomPort
+      type: bool
+      value: true

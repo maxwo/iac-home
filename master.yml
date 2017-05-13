@@ -4,7 +4,9 @@
 - hosts: dev
   roles:
    - shell
+   - mac-configuration
    - mac-desktop
+   - mac-transmission
    - mac-dev-tools
 
 - hosts: mediacenter

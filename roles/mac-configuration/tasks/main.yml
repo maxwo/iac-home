@@ -1,0 +1,263 @@
+---
+# Tasks for roles
+
+- name: Ensure Mac OS is configured
+  osx_defaults:
+    domain: "{{ item.domain if 'domain' in item else 'NSGlobalDomain' }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: present
+  with_items:
+    - key: NSNavPanelExpandedStateForSaveMode
+      type: bool
+      value: true
+    - key: NSNavPanelExpandedStateForSaveMode2
+      type: bool
+      value: true
+    - key: PMPrintingExpandedStateForPrint
+      type: bool
+      value: true
+    - key: PMPrintingExpandedStateForPrint2
+      type: bool
+      value: true
+    - key: NSDocumentSaveNewDocumentsToCloud
+      type: bool
+      value: false
+    - key: AppleFontSmoothing
+      type: int
+      value: 1
+    - key: AppleShowAllExtensions
+      type: bool
+      value: true
+    - domain: com.apple.systempreferences
+      key: NSQuitAlwaysKeepsWindows
+      type: bool
+      value: false
+    - domain: com.apple.helpviewer
+      key: DevMode
+      type: bool
+      value: true
+
+- name: Ensure screensaver is configured
+  osx_defaults:
+    domain: com.apple.screensaver
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: present
+  with_items:
+    - key: askForPassword
+      type: int
+      value: 0
+    - key: askForPasswordDelay
+      type: float
+      value: 0
+
+- name: Ensure DSStore files are not created on remote & USB drives
+  osx_defaults:
+    domain: com.apple.desktopservices
+    key: "{{ item }}"
+    type: bool
+    value: true
+    state: present
+  with_items:
+    - DSDontWriteNetworkStores
+    - DSDontWriteUSBStores
+
+- name: Ensure Finder is configured
+  osx_defaults:
+    domain: com.apple.finder
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: present
+  with_items:
+    - key: NewWindowTarget
+      type: string
+      value: "PfDe"
+    - key: NewWindowTargetPath
+      type: string
+      value: "{{ ansible_env.HOME}}/Desktop"
+    - key: ShowExternalHardDrivesOnDesktop
+      type: bool
+      value: true
+    - key: ShowHardDrivesOnDesktop
+      type: bool
+      value: true
+    - key: ShowMountedServersOnDesktop
+      type: bool
+      value: true
+    - key: ShowStatusBar
+      type: bool
+      value: true
+    - key: ShowPathbar
+      type: bool
+      value: true
+    - key: _FXSortFoldersFirst
+      type: bool
+      value: true
+    - key: FXDefaultSearchScope
+      type: bool
+      value: true
+    - key: FXEnableExtensionChangeWarning
+      type: bool
+      value: false
+    - key: _FXSortFoldersFirst
+      type: bool
+      value: true
+    - key: FXDefaultSearchScope
+      type: bool
+      value: true
+    - key: FXPreferredViewStyle
+      type: string
+      value: Nlsv
+
+- name: Ensure Dashboard is disabled
+  osx_defaults:
+    domain: com.apple.dashboard
+    key: mcx-disabled
+    type: bool
+    value: true
+    state: present
+
+- name: Ensure Dock is configured
+  osx_defaults:
+    domain: com.apple.dock
+    key: tilesize
+    type: float
+    value: 36
+    state: present
+
+- name: Ensure hot corners are configured
+  osx_defaults:
+    domain: com.apple.dock
+    key: "{{ item.key }}"
+    type: int
+    value: "{{ item.value }}"
+    state: present
+  with_items:
+    - key: wvous-tl-corner
+      value: 2
+    - key: wvous-tl-modifier
+      value: 0
+    - key: wvous-tr-corner
+      value: 4
+    - key: wvous-tr-modifier
+      value: 0
+    - key: wvous-bl-corner
+      value: 3
+    - key: wvous-bl-modifier
+      value: 0
+
+- name: Ensure Safari is configured
+  osx_defaults:
+    domain: com.apple.Safari
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: present
+  with_items:
+    - key: UniversalSearchEnabled
+      type: bool
+      value: false
+    - key: SuppressSearchSuggestions
+      type: bool
+      value: false
+    - key: WebKitTabToLinksPreferenceKey
+      type: bool
+      value: true
+    - key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks
+      type: bool
+      value: true
+    - key: ShowFullURLInSmartSearchField
+      type: bool
+      value: true
+    - key: HomePage
+      type: string
+      value: "about:blank"
+    - key: AutoOpenSafeDownloads
+      type: bool
+      value: false
+    - key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled
+      type: bool
+      value: true
+    - key: ShowFavoritesBar
+      type: bool
+      value: false
+    - key: IncludeInternalDebugMenu
+      type: bool
+      value: true
+    - key: WebContinuousSpellCheckingEnabled
+      type: bool
+      value: true
+    - key: WebAutomaticSpellingCorrectionEnabled
+      type: bool
+      value: false
+    - key: AutoFillFromAddressBook
+      type: bool
+      value: false
+    - key: AutoFillPasswords
+      type: bool
+      value: false
+    - key: AutoFillCreditCardData
+      type: bool
+      value: false
+    - key: AutoFillMiscellaneousForms
+      type: bool
+      value: true
+    - key: WebKitPluginsEnabled
+      type: bool
+      value: false
+    - key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2PluginsEnabled
+      type: bool
+      value: false
+    - key: WebKitJavaEnabled
+      type: bool
+      value: false
+    - key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled
+      type: bool
+      value: false
+    - key: WebKitJavaScriptCanOpenWindowsAutomatically
+      type: bool
+      value: false
+    - key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically
+      type: bool
+      value: false
+    - key: SendDoNotTrackHTTPHeader
+      type: bool
+      value: true
+    - key: InstallExtensionUpdatesAutomatically
+      type: bool
+      value: true
+
+- name: Ensure Mail is configured
+  osx_defaults:
+    domain: com.apple.mail
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: present
+  with_items:
+    - key: DisableInlineAttachmentViewing
+      type: bool
+      value: true
+    - key: SpellCheckingBehavior
+      type: string
+      value: NoSpellCheckingEnabled
+
+- name: Ensure Time Machine is configured
+  osx_defaults:
+    domain: com.apple.TimeMachine
+    key: DoNotOfferNewDisksForBackup
+    type: bool
+    value: true
+
+- name: Ensure Photo is configured
+  osx_defaults:
+    domain: com.apple.ImageCapture
+    key: disableHotPlug
+    type: bool
+    value: true
+    host: currentHost
+    state: present

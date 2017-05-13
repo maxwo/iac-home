@@ -5,8 +5,10 @@
   include_role:
     name: homebrew
   when: ansible_os_family == 'Darwin'
+  tags: packages, macosx
 
 - name: Ensure APT packages are up to date
   include_role:
     name: apt
   when: ansible_distribution == 'Debian'
+  tags: packages, debian, ubuntu

@@ -31,13 +31,13 @@
     state: latest
   with_items:
    - ansible
-   - yarn
    - git
    - golang
    - gom
    - gpg
    - hg
    - maven
+   - yarn
 
 - name: Ensure versions cask is installed
   homebrew_tap:

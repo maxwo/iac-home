@@ -1,14 +1,8 @@
 ---
 # Tasks for roles
 
-#- name: example
-#  action: example
-#  notify:
-#    - restart service
-#  tags:
-#    - example
-
 - name: Ensure Homebrew packages are up to date
   homebrew:
     update_homebrew: yes
     upgrade_all: yes
+  tags: packages, macosx
