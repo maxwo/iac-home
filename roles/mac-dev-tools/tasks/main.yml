@@ -72,10 +72,11 @@
    - "@angular/cli"
    - bower
    - browser-sync
-   - grunt
-   - gulp
+   - grunt-cli
+   - gulp-cli
    - npm-check-updates
    - vue-cli
+  tags: js
 
 - name: Ensure Atom plugins are up to date
   include_role:
