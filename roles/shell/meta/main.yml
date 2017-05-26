@@ -1,3 +1,4 @@
 # Role dependencies
 dependencies:
   - update
+  - oh-my-zsh
