@@ -12,7 +12,7 @@
 - hosts: mediacenter
   roles:
    - shell
-   - mediacenter
+   - kodi
 
 - hosts: vpn
   roles:

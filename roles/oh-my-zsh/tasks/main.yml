@@ -27,17 +27,3 @@
   git:
     repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
-
-- name: Ensure dotfiles are present
-  include_role:
-    name: dotfiles
-
-- name: Ensure utilities are installed
-  package:
-    name: "{{ item }}"
-    state: latest
-  become: "{{ ansible_os_family != 'Darwin' }}"
-  with_items:
-   - screen
-   - vim
-   - wget
