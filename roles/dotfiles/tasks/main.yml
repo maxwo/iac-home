@@ -13,6 +13,18 @@
     repo: 'https://github.com/maxwo/dotfiles.git'
     dest: "{{ ansible_env.HOME }}/dotfiles"
 
+- name: Ensure user directories exist
+  file:
+    path: "{{ ansible_env.HOME }}/{{ item }}"
+    state: directory
+    mode: 0700
+    recurse: yes
+  with_items:
+    - .vim/backups
+    - .vim/swaps
+    - .vim/undo
+    - .gnupg
+
 - name: Ensure SSH dotfiles symlinks are set with correct permissions
   file:
     src: "{{ ansible_env.HOME}}/dotfiles/ssh/{{ item }}"
@@ -23,6 +35,14 @@
   with_items:
     - authorized_keys
     - config
+
+- name: Ensure GPG dotfiles symlinks are set
+  file:
+    src: "{{ ansible_env.HOME}}/dotfiles/gnupg/{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.gnupg/{{ item }}"
+    state: link
+  with_items:
+    - gpg.conf
 
 - name: Ensure dotfiles standard symlinks are set
   file:
@@ -38,14 +58,3 @@
     - vimrc
     - wgetrc
     - zshrc
-
-- name: Ensure user directories exist
-  file:
-    path: "{{ ansible_env.HOME }}/{{ item }}"
-    state: directory
-    mode: 0700
-    recurse: yes
-  with_items:
-    - .vim/backups
-    - .vim/swaps
-    - .vim/undo

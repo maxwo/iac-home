@@ -1,6 +1,5 @@
 ---
 # Tasks for roles
-
 - name: Ensure Oh My Zsh required packages are installed
   package:
     name: "{{ item }}"
