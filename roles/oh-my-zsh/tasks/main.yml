@@ -5,6 +5,8 @@
     name: "{{ item }}"
     state: latest
   become: "{{ ansible_os_family != 'Darwin' }}"
+  environment:
+    - PATH: /bin:/sbin:/usr/bin:/usr/sbin
   with_items:
    - curl
    - git

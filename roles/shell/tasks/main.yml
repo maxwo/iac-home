@@ -9,6 +9,8 @@
     name: "{{ item }}"
     state: latest
   become: "{{ ansible_os_family != 'Darwin' }}"
+  environment:
+    - PATH: /bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin
   with_items:
    - screen
    - vim

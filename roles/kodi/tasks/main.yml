@@ -1,39 +1,82 @@
 ---
 # Tasks for roles
 
-#- name: example
-#  action: example
-#  notify:
-#    - restart service
-#  tags:
-#    - example
-
 - name: Ensure PWM audio is set to 2
   lineinfile:
     path: /boot/config.txt
     line: audio_pwm_mode=2
     state: present
-  become_method: sudo
+  become: true
+  tags: kodi
 
-- name: Ensure SMB credentials are available
+- name: Ensure SMB credentials are stored
   template:
     src: smbcredentials
     dest: "{{ ansible_env.HOME }}/.smbcredentials"
     owner: osmc
-    group: root
-    mode: "u=rw,g=r,o="
+    mode: 0640
+  become: true
+  tags: kodi
+
+
+- name: Ensure mounting points are present
+  file:
+    path: "{{ item }}"
+    state: directory
+  become: true
+  with_items:
+    - /mnt/media
+    - /mnt/downloads
+  tags: kodi
 
 - name: Ensure network drives are automounted
   lineinfile:
     path: /etc/fstab
     line: "{{ item }}"
     state: present
-  become_method: sudo
+  become: true
   with_items:
     - //192.168.3.2/Media      /mnt/media      cifs    x-systemd.automount,noauto,uid=0,users,credentials=/home/osmc/.smbcredentials,sec=ntlmv2 0 0
     - //192.168.3.2/Downloads      /mnt/downloads      cifs    x-systemd.automount,noauto,uid=0,users,credentials=/home/osmc/.smbcredentials,sec=ntlmv2 0 0
+  notify: kodi restart
+  tags: kodi
 
-- name: Ensure media sources are configured
+- name: Ensure configuration directories are set
+  file:
+    path: "{{ ansible_env.HOME }}/.kodi/userdata/{{ item }}"
+    state: directory
+  with_items:
+    - addon_data/metadata.themoviedb.org
+    - addon_data/metadata.tvdb.com
+  tags: kodi
+
+- name: Ensure configurations are set
   template:
-    src: sources.xml
-    dest: "{{ ansible_env.HOME }}/.kodi/userdata/sources.xml"
+    src: "{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/.kodi/userdata/{{ item.dest }}"
+  with_items:
+    - src: sources.xml
+      dest: sources.xml
+    - src: guisettings.xml
+      dest: guisettings.xml
+    - src: mediasources.xml
+      dest: mediasources.xml
+    - src: themoviedb-settings.xml
+      dest: addon_data/metadata.themoviedb.org/settings.xml
+    - src: tvdb-settings.xml
+      dest: addon_data/metadata.tvdb.com/settings.xml
+  notify: kodi restart
+  tags: kodi
+
+- name: Ensure addons are installed
+  unarchive:
+    src: "{{ item.url }}"
+    dest: "{{ ansible_env.HOME }}/.kodi/addons/"
+    creates: "{{ ansible_env.HOME }}/.kodi/addons/{{ item.name }}"
+    mode: 0644
+    remote_src: True
+  with_items:
+    - name: service.subtitles.opensubtitles
+      url: http://mirrors.kodi.tv/addons/krypton/service.subtitles.opensubtitles/service.subtitles.opensubtitles-5.0.16.zip
+  notify: kodi restart
+  tags: kodi

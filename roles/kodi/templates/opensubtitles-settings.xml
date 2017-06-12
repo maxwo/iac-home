@@ -1,0 +1,4 @@
+<settings>
+    <setting id="OSpass" value="{{ OPENSUBTITLE_PASSWORD }}" />
+    <setting id="OSuser" value="{{ OPENSUBTITLE_USERNAME }}" />
+</settings>

@@ -1,5 +1,6 @@
 ---
 # Handlers for roles
 
-#- name: example restart
-#  action: service name=service state=restarted
+- name: kodi restart
+  action: systemd name=mediacenter state=restarted
+  become: true

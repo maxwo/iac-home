@@ -1,0 +1,9 @@
+<settings>
+    <setting id="RatingS" value="TMDb" />
+    <setting id="certprefix" value="Rated " />
+    <setting id="fanart" value="true" />
+    <setting id="keeporiginaltitle" value="false" />
+    <setting id="language" value="fr" />
+    <setting id="tmdbcertcountry" value="fr" />
+    <setting id="trailer" value="true" />
+</settings>
