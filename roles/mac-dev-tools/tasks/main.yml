@@ -86,6 +86,7 @@
      - jade-beautify
      - language-docker
      - language-ansible
+     - language-groovy
      - language-jade
      - language-javascript-jsx
      - language-vue
