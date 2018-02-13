@@ -18,7 +18,6 @@
   become: true
   tags: kodi
 
-
 - name: Ensure mounting points are present
   file:
     path: "{{ item }}"
@@ -41,7 +40,7 @@
   notify: kodi restart
   tags: kodi
 
-- name: Ensure configuration directories are set
+- name: Ensure configuration directories are created
   file:
     path: "{{ ansible_env.HOME }}/.kodi/userdata/{{ item }}"
     state: directory
@@ -74,7 +73,7 @@
     dest: "{{ ansible_env.HOME }}/.kodi/addons/"
     creates: "{{ ansible_env.HOME }}/.kodi/addons/{{ item.name }}"
     mode: 0644
-    remote_src: True
+    remote_src: true
   with_items:
     - name: service.subtitles.opensubtitles
       url: http://mirrors.kodi.tv/addons/krypton/service.subtitles.opensubtitles/service.subtitles.opensubtitles-5.0.16.zip

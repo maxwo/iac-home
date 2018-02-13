@@ -48,6 +48,7 @@
    - google-chrome-canary
    - iterm2
    - java
+   - postman
    - sourcetree
    - sublime-text
    - vagrant
@@ -78,19 +79,33 @@
     atom_upgrade_all: true
     atom_packages:
      - atom-beautify
+     - atom-jinja2
      - atom-typescript
      - busy-signal
      - cssbeautify
+     - docker
      - file-icons
      - intentions
      - jade-beautify
-     - language-docker
      - language-ansible
+     - language-awk
+     - language-docker
+     - language-hcl
+     - language-ignore
+     - language-ini
      - language-jade
      - language-javascript-jsx
+     - language-markdown
+     - language-pug
+     - language-sass
+     - language-toml
      - language-vue
      - linter
+     - linter-docker
      - linter-eslint
+     - linter-markdown
+     - linter-sass-lint
+     - linter-toml
      - linter-ui-default
      - minimap
      - minimap-find-and-replace

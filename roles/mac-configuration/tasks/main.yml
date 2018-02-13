@@ -49,10 +49,13 @@
   with_items:
     - key: askForPassword
       type: int
-      value: 0
+      value: 1
+    - key: idleTime
+      type: int
+      value: 300
     - key: askForPasswordDelay
       type: float
-      value: 0
+      value: 1
 
 - name: Ensure DSStore files are not created on remote & USB drives
   osx_defaults:
@@ -148,6 +151,10 @@
     - key: wvous-bl-corner
       value: 2
     - key: wvous-bl-modifier
+      value: 0
+    - key: wvous-br-corner
+      value: 5
+    - key: wvous-br-modifier
       value: 0
 
 - name: Ensure Safari is configured
