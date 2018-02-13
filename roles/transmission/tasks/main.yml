@@ -1,0 +1,23 @@
+---
+# Tasks for roles
+
+- name: Ensure Transmission is installed as a daemon
+  package:
+    name: transmission-daemon
+    state: latest
+  environment:
+    - PATH: /bin:/sbin:/usr/bin:/usr/sbin
+  become: true
+  tags: transmission
+
+
+- name: Ensure configurations are set
+  template:
+    src: settings.json
+    dest: /etc/transmission-daemon/settings.json
+    owner: debian-transmission
+    group: debian-transmission
+    mode: 0600
+  become: yes
+  notify: transmission restart
+  tags: transmission

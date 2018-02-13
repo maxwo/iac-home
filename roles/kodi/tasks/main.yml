@@ -31,12 +31,14 @@
 - name: Ensure network drives are automounted
   lineinfile:
     path: /etc/fstab
-    line: "{{ item }}"
+    line: "{{ item.network }}      {{ item.path }}      cifs    x-systemd.automount,noauto,uid=0,users,credentials=/home/osmc/.smbcredentials,sec=ntlmv2 0 0"
     state: present
   become: true
   with_items:
-    - //192.168.3.2/Media      /mnt/media      cifs    x-systemd.automount,noauto,uid=0,users,credentials=/home/osmc/.smbcredentials,sec=ntlmv2 0 0
-    - //192.168.3.2/Downloads      /mnt/downloads      cifs    x-systemd.automount,noauto,uid=0,users,credentials=/home/osmc/.smbcredentials,sec=ntlmv2 0 0
+    - network: //192.168.3.2/Media
+      path: /mnt/media
+    - network: //192.168.3.2/Downloads
+      path: /mnt/downloads
   notify: kodi restart
   tags: kodi
 
@@ -77,5 +79,9 @@
   with_items:
     - name: service.subtitles.opensubtitles
       url: http://mirrors.kodi.tv/addons/krypton/service.subtitles.opensubtitles/service.subtitles.opensubtitles-5.0.16.zip
+    - name: script.module.urlresolver
+      url: https://github.com/XvBMC/repository.xvbmc/blob/master/Dependencies/zips/script.module.urlresolver/script.module.urlresolver-3.0.29.zip?raw=true
+    - name: plugin.video.youtube
+      url: http://mirrors.kodi.tv/addons/krypton/plugin.video.youtube/plugin.video.youtube-5.3.12.zip
   notify: kodi restart
   tags: kodi

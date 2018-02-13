@@ -93,6 +93,7 @@
      - language-hcl
      - language-ignore
      - language-ini
+     - language-groovy
      - language-jade
      - language-javascript-jsx
      - language-markdown

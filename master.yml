@@ -13,6 +13,7 @@
   roles:
    - shell
    - kodi
+   - transmission
 
 - hosts: vpn
   roles:
