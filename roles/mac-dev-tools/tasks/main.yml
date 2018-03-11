@@ -36,13 +36,18 @@
   homebrew_tap:
     name: caskroom/versions
 
+- name: Ensure non-edge Docker is removed
+  homebrew_cask:
+    name: docker
+    state: absent
+
 - name: Ensure dev applications are installed
   homebrew_cask:
     name: "{{ item }}"
     state: present
   with_items:
    - atom
-   - docker
+   - docker-edge
    - eclipse-jee
    - firefoxnightly
    - google-chrome-canary
@@ -90,6 +95,7 @@
      - language-ansible
      - language-awk
      - language-docker
+     - language-erlang
      - language-hcl
      - language-ignore
      - language-ini

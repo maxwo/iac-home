@@ -1,5 +1,11 @@
 ---
 # Tasks for roles
+- name: Ensure sources mountpoints are set
+  include_role:
+    name: automount
+  vars:
+    nas_mount_user: "{{ transmission_user }}"
+    nas_mountpoints: "{{ transmission_mountpoints }}"
 
 - name: Ensure Transmission is installed as a daemon
   package:
@@ -9,7 +15,6 @@
     - PATH: /bin:/sbin:/usr/bin:/usr/sbin
   become: true
   tags: transmission
-
 
 - name: Ensure configurations are set
   template:

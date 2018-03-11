@@ -6,12 +6,12 @@
         <default pathversion="1"></default>
         <source>
             <name>TVShows</name>
-            <path pathversion="1">/mnt/media/TVShows/</path>
+            <path pathversion="1">{{ kodi_sources_mountpoint }}/TVShows/</path>
             <allowsharing>true</allowsharing>
         </source>
         <source>
             <name>Movies</name>
-            <path pathversion="1">/mnt/media/Movies/</path>
+            <path pathversion="1">{{ kodi_sources_mountpoint }}/Movies/</path>
             <allowsharing>true</allowsharing>
         </source>
     </video>
@@ -22,7 +22,7 @@
         <default pathversion="1"></default>
         <source>
             <name>Pictures</name>
-            <path pathversion="1">/mnt/media/Pictures/</path>
+            <path pathversion="1">{{ kodi_sources_mountpoint }}/Pictures/</path>
             <allowsharing>true</allowsharing>
         </source>
     </pictures>

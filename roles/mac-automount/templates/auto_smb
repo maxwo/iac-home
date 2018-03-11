@@ -1,0 +1,4 @@
+{{ ansible_managed | comment }}
+{% for mountpoint in nas_mountpoints %}
+{{ mountpoint.mountpoint }} -fstype=smbfs :{{ mountpoint.share }}
+{% endfor %}

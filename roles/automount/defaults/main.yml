@@ -1,0 +1,12 @@
+---
+# defaults file for automount
+nas_address: "{{ secured_nas_address }}"
+nas_username: "{{ secured_nas_media_username }}"
+nas_password: "{{ secured_nas_media_password }}"
+nas_credentials_path: "{{ ansible_env.HOME }}/.smbcredentials"
+
+nas_mount_folder: /mnt
+nas_mount_user: "{{ ansible_user_id }}"
+nas_mount_group: "{{ nas_mount_user }}"
+nas_mount_file_permissions: '0644'
+nas_mount_dir_permissions: '0755'

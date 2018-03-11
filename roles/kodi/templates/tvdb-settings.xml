@@ -1,3 +1,4 @@
+{{ ansible_managed | comment('xml') }}
 <settings>
     <setting id="RatingS" value="TheTVDB" />
     <setting id="absolutenumber" value="false" />

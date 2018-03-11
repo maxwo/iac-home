@@ -1,0 +1,5 @@
+---
+# handlers file for automount
+- name: reload mounts
+  shell: "mount -a"
+  become: true

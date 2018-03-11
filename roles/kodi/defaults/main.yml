@@ -1,0 +1,8 @@
+---
+opensubtitle_username: "{{ secured_opensubtitle_username }}"
+opensubtitle_password: "{{ secured_opensubtitle_password }}"
+
+kodi_sources_mountpoint: "/mnt/media"
+kodi_mountpoints:
+  - mountpoint: "{{ kodi_sources_mountpoint }}"
+    share: "//{{ nas_address }}/Media"

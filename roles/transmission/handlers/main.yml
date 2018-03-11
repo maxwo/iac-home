@@ -2,5 +2,7 @@
 # Handlers for roles
 
 - name: transmission restart
-  action: service name=transmission-daemon state=restarted
+  service:
+    name: transmission-daemon
+    state: restarted
   become: true

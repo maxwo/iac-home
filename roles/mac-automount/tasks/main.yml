@@ -1,0 +1,22 @@
+---
+# tasks file for mac-automount
+- name: Ensure mountpoint directory is created
+  file:
+    path: "{{ nas_mount_folder }}"
+    state: directory
+
+- name: Ensure SMB mountpoints are configured
+  template:
+    src: auto_smb
+    dest: "/etc/auto_smb"
+    mode: 0600
+  become: yes
+  notify: reload automount
+
+- name: Ensure SMB mountpoints are declared
+  lineinfile:
+    path: /etc/auto_master
+    line: "{{ nas_mount_folder }} auto_smb"
+    state: present
+  become: yes
+  notify: reload automount

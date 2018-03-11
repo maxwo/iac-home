@@ -1,0 +1,5 @@
+---
+transmission_user: debian-transmission
+transmission_mountpoints:
+  - mountpoint: "{{ nas_mount_folder }}/downloads"
+    share: "//{{ nas_address }}/Downloads"

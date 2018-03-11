@@ -3,19 +3,20 @@
 
 - hosts: dev
   roles:
-   - shell
-   - mac-configuration
-   - mac-desktop
-   - mac-transmission
-   - mac-dev-tools
+   - role: shell
+   - role: mac-automount
+   - role: mac-configuration
+   - role: mac-desktop
+   - role: mac-transmission
+   - role: mac-dev-tools
 
 - hosts: mediacenter
   roles:
-   - shell
-   - kodi
-   - transmission
+   - role: shell
+   - role: kodi
+   - role: transmission
 
 - hosts: vpn
   roles:
-   - shell
-   - sshd
+   - role: shell
+   - role: sshd

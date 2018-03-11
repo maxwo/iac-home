@@ -1,0 +1,5 @@
+---
+# handlers file for mac-automount
+- name: reload automount
+  shell: "automount -vc"
+  become: yes
