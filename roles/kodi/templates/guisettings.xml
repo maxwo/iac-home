@@ -29,6 +29,7 @@
         <eac3passthrough default="true">false</eac3passthrough>
         <guisoundmode default="true">1</guisoundmode>
         <maintainoriginalvolume default="true">true</maintainoriginalvolume>
+        <mixlfe default="true">0</mixlfe>
         <passthrough default="true">false</passthrough>
         <passthroughdevice default="true">PI:HDMI</passthroughdevice>
         <plladjust default="true">0</plladjust>
@@ -306,7 +307,7 @@
         <useairplaypassword default="true">false</useairplaypassword>
         <webserver default="true">true</webserver>
         <webserverpassword default="true"></webserverpassword>
-        <webserverport default="true">8080</webserverport>
+        <webserverport>8080</webserverport>
         <webserverusername default="true"></webserverusername>
         <webskin default="true">webinterface.default</webskin>
         <zeroconf default="true">true</zeroconf>
@@ -318,6 +319,7 @@
         <staytime default="true">5</staytime>
     </slideshow>
     <smb>
+        <maxprotocol default="true">3</maxprotocol>
         <winsserver default="true">0.0.0.0</winsserver>
         <workgroup default="true">WORKGROUP</workgroup>
     </smb>

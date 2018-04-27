@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>PATH</key>
+      <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:</string>
+    </dict>
+    <key>Label</key>
+    <string>io.prometheus.node_exporter</string>
+    <key>Program</key>
+    <string>{{ node_exporter_installation_dir }}/node_exporter</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutputPath</key>
+    <string>{{ node_exporter_log_dir }}/node_exporter.stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>{{ node_exporter_log_dir }}/node_exporter.stderr.log</string>
+  </dict>
+</plist>

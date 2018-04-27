@@ -23,13 +23,15 @@
     name: "{{ item }}"
     state: latest
   with_items:
-   - ansible
+   - dos2unix
    - git
    - golang
    - gom
    - gpg
    - hg
+   - kubernetes-helm
    - maven
+   - python3
    - yarn
 
 - name: Ensure versions cask is installed
@@ -83,6 +85,7 @@
   vars:
     atom_upgrade_all: true
     atom_packages:
+     - asciidoc-preview
      - atom-beautify
      - atom-jinja2
      - atom-typescript
@@ -90,9 +93,11 @@
      - cssbeautify
      - docker
      - file-icons
+     - go-plus
      - intentions
      - jade-beautify
      - language-ansible
+     - language-asciidoc
      - language-awk
      - language-docker
      - language-erlang
@@ -112,6 +117,7 @@
      - linter-eslint
      - linter-markdown
      - linter-sass-lint
+     - linter-shellcheck
      - linter-toml
      - linter-ui-default
      - minimap

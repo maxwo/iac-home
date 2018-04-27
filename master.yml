@@ -1,22 +1,38 @@
 ---
 # master playbook
+- hosts: debian
+  gather_facts: False
+  tasks:
+    - name: Ensure DMI decode is present
+      apt:
+        name: "{{ item }}"
+        state: present
+      become: yes
+      with_items:
+        - dmidecode
+        - python-pip
+
+- hosts: all
+  roles:
+    - sshd
+    - shell
+
+- hosts: mac
+  roles:
+    - mac-node
 
 - hosts: dev
   roles:
-   - role: shell
-   - role: mac-automount
-   - role: mac-configuration
-   - role: mac-desktop
-   - role: mac-transmission
-   - role: mac-dev-tools
+    - mac-automount
+    - mac-configuration
+    - mac-desktop
+    - mac-transmission
+    - mac-dev-tools
 
 - hosts: mediacenter
   roles:
-   - role: shell
-   - role: kodi
-   - role: transmission
+    - kodi
+    - transmission
 
 - hosts: vpn
-  roles:
-   - role: shell
-   - role: sshd
+  roles: []
