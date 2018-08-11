@@ -28,6 +28,7 @@
    - golang
    - gom
    - gpg
+   - lnav
    - hg
    - maven
    - yarn
