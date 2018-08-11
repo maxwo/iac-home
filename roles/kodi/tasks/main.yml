@@ -1,6 +1,5 @@
 ---
 # Tasks for roles
-
 - name: Ensure PWM audio is set to 2
   lineinfile:
     path: /boot/config.txt
@@ -9,38 +8,11 @@
   become: true
   tags: kodi
 
-- name: Ensure SMB credentials are stored
-  template:
-    src: smbcredentials
-    dest: "{{ ansible_env.HOME }}/.smbcredentials"
-    owner: osmc
-    mode: 0640
-  become: true
-  tags: kodi
-
-- name: Ensure mounting points are present
-  file:
-    path: "{{ item }}"
-    state: directory
-  become: true
-  with_items:
-    - /mnt/media
-    - /mnt/downloads
-  tags: kodi
-
-- name: Ensure network drives are automounted
-  lineinfile:
-    path: /etc/fstab
-    line: "{{ item.network }}      {{ item.path }}      cifs    x-systemd.automount,noauto,uid=0,users,credentials=/home/osmc/.smbcredentials,sec=ntlmv2 0 0"
-    state: present
-  become: true
-  with_items:
-    - network: //192.168.3.2/Media
-      path: /mnt/media
-    - network: //192.168.3.2/Downloads
-      path: /mnt/downloads
-  notify: kodi restart
-  tags: kodi
+- name: Ensure sources mountpoints are set
+  include_role:
+    name: automount
+  vars:
+    nas_mountpoints: "{{ kodi_mountpoints }}"
 
 - name: Ensure configuration directories are created
   file:

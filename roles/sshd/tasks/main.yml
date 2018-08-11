@@ -1,10 +1,17 @@
 ---
 # Tasks for roles
-
 - name: Ensure root login is disabled
   lineinfile:
     path: /etc/ssh/sshd_config
     line: 'PermitRootLogin no'
-    regexp: '^PermitRootLogin'
+    regexp: '(#|)PermitRootLogin .*'
+  become: yes
+  notify: "Restart sshd"
+
+- name: Ensure password login is disabled
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    line: 'PasswordAuthentication no'
+    regexp: '(#|)PasswordAuthentication .*'
   become: yes
   notify: "Restart sshd"

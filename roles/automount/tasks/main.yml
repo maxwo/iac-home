@@ -1,0 +1,25 @@
+---
+# tasks file for automount
+- name: Ensure SMB credentials are stored
+  template:
+    src: smbcredentials
+    dest: "{{ nas_credentials_path }}"
+    mode: 0600
+  notify: reload mounts
+
+- name: Ensure mounting points are present
+  file:
+    path: "{{ item }}"
+    state: directory
+  become: true
+  with_items: "{{ nas_mountpoints | map(attribute='mountpoint') | list }}"
+
+- name: Ensure network drives are automounted
+  mount:
+    path: "{{ item.mountpoint }}"
+    src: "{{ item.share }}"
+    fstype: cifs
+    opts: "x-systemd.automount,uid={{ nas_mount_user }},gid={{ nas_mount_group }},users,credentials={{ nas_credentials_path }},sec=ntlmv2,vers=1.0,file_mode={{ nas_mount_file_permissions }},dir_mode={{ nas_mount_dir_permissions }},iocharset=utf8"
+    state: mounted
+  become: true
+  with_items: "{{ nas_mountpoints }}"

@@ -1,3 +1,4 @@
+{{ ansible_managed | comment('xml') }}
 <settings>
     <setting id="RatingS" value="TMDb" />
     <setting id="certprefix" value="Rated " />

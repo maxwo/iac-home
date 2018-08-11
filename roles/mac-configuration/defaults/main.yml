@@ -1,0 +1,18 @@
+---
+nas_address: "{{ secured_nas_address }}"
+nas_username: "{{ secured_nas_user_username }}"
+nas_password: "{{ secured_nas_user_password }}"
+
+nas_mount_folder: "/Users/{{ ansible_user }}/shares"
+
+nas_mountpoints:
+  - folder: "{{ nas_mount_folder }}/Root"
+    share: "://{{ nas_username }}:{{ nas_password }}@{{ nas_address }}/Volume_1"
+  - folder: "{{ nas_mount_folder }}/Downloads"
+    share: "://{{ nas_username }}:{{ nas_password }}@{{ nas_address }}/Downloads"
+  - folder: "{{ nas_mount_folder }}/iTunes"
+    share: "://{{ nas_username }}:{{ nas_password }}@{{ nas_address }}/iTunes"
+  - folder: "{{ nas_mount_folder }}/Lightroom"
+    share: "://{{ nas_username }}:{{ nas_password }}@{{ nas_address }}/Lightroom"
+  - folder: "{{ nas_mount_folder }}/Media"
+    share: "://{{ nas_username }}:{{ nas_password }}@{{ nas_address }}/Media"

@@ -1,0 +1,17 @@
+---
+# defaults file for mac-automount
+nas_address: "{{ secured_nas_address }}"
+nas_username: "{{ secured_nas_user_username }}"
+nas_password: "{{ secured_nas_user_password }}"
+nas_mount_folder: "{{ ansible_env.HOME }}/Shares"
+nas_mountpoints:
+  - mountpoint: "root"
+    share: "//{{ nas_username }}:{{ nas_password }}@{{ nas_address }}/Volume_1"
+  - mountpoint: "Lightroom"
+    share: "//{{ nas_username }}:{{ nas_password }}@{{ nas_address }}/Lightroom"
+  - mountpoint: "Media"
+    share: "//{{ nas_username }}:{{ nas_password }}@{{ nas_address }}/Media"
+  - mountpoint: "iTunes"
+    share: "//{{ nas_username }}:{{ nas_password }}@{{ nas_address }}/iTunes"
+  - mountpoint: "Downloads"
+    share: "//{{ nas_username }}:{{ nas_password }}@{{ nas_address }}/Downloads"

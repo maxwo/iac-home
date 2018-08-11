@@ -1,0 +1,13 @@
+---
+# handlers file for roles/mac-node
+
+- name: Install node exporter
+  shell:
+    cmd: |
+      tar xzvf /tmp/{{ node_exporter_url_filename }} -C /tmp
+      mv /tmp/{{ node_exporter_archive }}/node_exporter {{ node_exporter_installation_dir }}/node_exporter
+  become: yes
+
+- name: Install daemon
+  shell:
+    cmd: sudo launchctl load -w /Library/LaunchDaemons/com.startup.plist

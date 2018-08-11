@@ -1,0 +1,10 @@
+---
+# defaults file for roles/mac-node
+node_exporter_version: 0.16.0-rc.1
+
+node_exporter_archive: "node_exporter-{{ node_exporter_version }}.darwin-amd64"
+node_exporter_url_filename: "{{ node_exporter_archive }}.tar.gz"
+node_exporter_url: https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/{{ node_exporter_url_filename }}
+node_exporter_installation_dir: /usr/local/bin
+node_exporter_log_dir: /var/log
+node_exporter_daemon_plist: io.prometheus.node_exporter.plist

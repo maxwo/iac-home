@@ -1,6 +1,7 @@
 ---
 # Handlers for roles
-
 - name: kodi restart
-  action: systemd name=mediacenter state=restarted
+  systemd:
+    name: mediacenter
+    state: restarted
   become: true

@@ -12,6 +12,9 @@
   environment:
     - PATH: /bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin
   with_items:
-   - screen
-   - vim
-   - wget
+    - jq
+    - lnav
+    - screen
+    - thefuck
+    - vim
+    - wget

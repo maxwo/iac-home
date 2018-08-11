@@ -1,5 +1,9 @@
 # home inventory
 
+[mac:children]
+dev
+photo
+
 [dev]
 zenika.local
 aki.local
@@ -7,10 +11,14 @@ haru.local
 
 [photo]
 haru.local
-aki.local
+
+[debian:children]
+vpn
+mediacenter
 
 [mediacenter]
 natsu.local
 
 [vpn]
 koyo.local
+kisoku.local
