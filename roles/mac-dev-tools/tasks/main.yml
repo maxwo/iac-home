@@ -23,19 +23,19 @@
     name: "{{ item }}"
     state: latest
   with_items:
-    - awscli
-    - dos2unix
-    - git
-    - golang
-    - gom
-    - gpg
-    - hg
-    - kops
-    - kubernetes-helm
-    - maven
-    - python3
-    - terraform
-    - yarn
+   - awscli
+   - dos2unix
+   - git
+   - golang
+   - gom
+   - gpg
+   - lnav
+   - hg
+   - kops
+   - kubernetes-helm
+   - maven
+   - python3
+   - yarn
 
 - name: Ensure versions cask is installed
   homebrew_tap:
