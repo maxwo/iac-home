@@ -23,16 +23,19 @@
     name: "{{ item }}"
     state: latest
   with_items:
-   - dos2unix
-   - git
-   - golang
-   - gom
-   - gpg
-   - hg
-   - kubernetes-helm
-   - maven
-   - python3
-   - yarn
+    - awscli
+    - dos2unix
+    - git
+    - golang
+    - gom
+    - gpg
+    - hg
+    - kops
+    - kubernetes-helm
+    - maven
+    - python3
+    - terraform
+    - yarn
 
 - name: Ensure versions cask is installed
   homebrew_tap:
@@ -70,13 +73,13 @@
   environment:
     PATH: "{{ ansible_env.PATH }}:/usr/local/bin/"
   with_items:
-   - "@angular/cli"
-   - bower
-   - browser-sync
-   - grunt-cli
-   - gulp-cli
-   - npm-check-updates
-   - vue-cli
+    - "@angular/cli"
+    - bower
+    - browser-sync
+    - grunt-cli
+    - gulp-cli
+    - npm-check-updates
+    - vue-cli
   tags: js
 
 - name: Ensure Atom plugins are up to date
@@ -85,42 +88,44 @@
   vars:
     atom_upgrade_all: true
     atom_packages:
-     - asciidoc-preview
-     - atom-beautify
-     - atom-jinja2
-     - atom-typescript
-     - busy-signal
-     - cssbeautify
-     - docker
-     - file-icons
-     - go-plus
-     - intentions
-     - jade-beautify
-     - language-ansible
-     - language-asciidoc
-     - language-awk
-     - language-docker
-     - language-erlang
-     - language-hcl
-     - language-ignore
-     - language-ini
-     - language-groovy
-     - language-jade
-     - language-javascript-jsx
-     - language-markdown
-     - language-pug
-     - language-sass
-     - language-toml
-     - language-vue
-     - linter
-     - linter-docker
-     - linter-eslint
-     - linter-markdown
-     - linter-sass-lint
-     - linter-shellcheck
-     - linter-toml
-     - linter-ui-default
-     - minimap
-     - minimap-find-and-replace
-     - minimap-git-diff
-     - minimap-pigments
+      - asciidoc-preview
+      - atom-beautify
+      - atom-jinja2
+      - atom-typescript
+      - busy-signal
+      - cssbeautify
+      - docker
+      - file-icons
+      - go-plus
+      - intentions
+      - jade-beautify
+      - language-ansible
+      - language-asciidoc
+      - language-awk
+      - language-docker
+      - language-erlang
+      - language-hcl
+      - language-ignore
+      - language-ini
+      - language-groovy
+      - language-jade
+      - language-javascript-jsx
+      - language-markdown
+      - language-pug
+      - language-sass
+      - language-terraform
+      - language-toml
+      - language-vue
+      - linter
+      - linter-docker
+      - linter-eslint
+      - linter-markdown
+      - linter-sass-lint
+      - linter-shellcheck
+      - linter-terraform-syntax
+      - linter-toml
+      - linter-ui-default
+      - minimap
+      - minimap-find-and-replace
+      - minimap-git-diff
+      - minimap-pigments
