@@ -1,5 +1,10 @@
 ---
 # Tasks for roles
+- name: Ensure local configurations directory exists
+  file:
+    name: "{{ ansible_env.HOME }}/local-configurations"
+    state: directory
+
 - name: Ensure dotfiles are present
   include_role:
     name: dotfiles

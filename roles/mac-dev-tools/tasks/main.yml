@@ -23,44 +23,53 @@
     name: "{{ item }}"
     state: latest
   with_items:
-   - awscli
-   - dos2unix
-   - git
-   - golang
-   - gom
-   - gpg
-   - lnav
-   - hg
-   - kops
-   - kubernetes-helm
-   - maven
-   - python3
-   - yarn
+    - awscli
+    - dos2unix
+    - gcc
+    - git
+    - golang
+    - gom
+    - gperftools
+    - gpg
+    - lnav
+    - hg
+    - kops
+    - kubernetes-helm
+    - maven
+    - python3
+    - yarn
 
 - name: Ensure non-edge Docker is removed
   homebrew_cask:
     name: docker
     state: absent
 
+- name: Ensure legacy dev applications are remove
+  homebrew_cask:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - sublime-text
+
 - name: Ensure dev applications are installed
   homebrew_cask:
     name: "{{ item }}"
     state: present
   with_items:
-   - atom
-   - docker-edge
-   - eclipse-java
-   - firefoxnightly
-   - google-chrome-canary
-   - iterm2
-   - java
-#    - oracle-jdk
-   - postman
-   - sourcetree
-   - sublime-text
-   - vagrant
-   - virtualbox
-   - visual-studio-code
+    - atom
+    - docker-edge
+    - eclipse-java
+    - firefoxnightly
+    - google-chrome-canary
+    - iterm2
+    - java
+    - oracle-jdk
+    - postman
+    - sourcetree
+    - sublime-text
+    - vagrant
+    - virtualbox
+    - visual-studio-code
 
 - name: Ensure Lombok destination is created
   file:
@@ -72,11 +81,13 @@
     url: "{{ lombok_url }}"
     dest: "{{ lombok_install_file }}"
 
-- name: Ensure Lombok is declared in Eclipse
+- name: Ensure Lombok is declared in Eclipse installations
   lineinfile:
-    path: "{{ eclipse_ini_path }}"
+    path: "{{ item }}"
     insertafter: -vmargs
     line: -javaagent:{{ lombok_install_file }}
+  with_fileglob:
+    - "{{ eclipse_ini_paths }}"
 
 - name: Ensure Javascript dev tools are globally installed
   npm:
@@ -115,6 +126,7 @@
       - language-ansible
       - language-asciidoc
       - language-awk
+      - language-cpp14
       - language-docker
       - language-erlang
       - language-hcl
@@ -123,6 +135,7 @@
       - language-groovy
       - language-jade
       - language-javascript-jsx
+      - language-make
       - language-markdown
       - language-pug
       - language-sass
@@ -131,6 +144,7 @@
       - language-vue
       - linter
       - linter-docker
+      - linter-gcc
       - linter-eslint
       - linter-markdown
       - linter-sass-lint
