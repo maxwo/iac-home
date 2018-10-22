@@ -37,10 +37,6 @@
    - python3
    - yarn
 
-- name: Ensure versions cask is installed
-  homebrew_tap:
-    name: caskroom/versions
-
 - name: Ensure non-edge Docker is removed
   homebrew_cask:
     name: docker
@@ -53,17 +49,34 @@
   with_items:
    - atom
    - docker-edge
-   - eclipse-jee
+   - eclipse-java
    - firefoxnightly
    - google-chrome-canary
    - iterm2
    - java
+#    - oracle-jdk
    - postman
    - sourcetree
    - sublime-text
    - vagrant
    - virtualbox
    - visual-studio-code
+
+- name: Ensure Lombok destination is created
+  file:
+    name: "{{ lombok_install_path }}"
+    state: directory
+
+- name: Ensure Lombok is downloaded
+  get_url:
+    url: "{{ lombok_url }}"
+    dest: "{{ lombok_install_file }}"
+
+- name: Ensure Lombok is declared in Eclipse
+  lineinfile:
+    path: "{{ eclipse_ini_path }}"
+    insertafter: -vmargs
+    line: -javaagent:{{ lombok_install_file }}
 
 - name: Ensure Javascript dev tools are globally installed
   npm:

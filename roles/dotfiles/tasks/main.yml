@@ -25,6 +25,14 @@
     - .vim/undo
     - .gnupg
 
+- name: Ensure vim plugins are installed
+  git:
+    repo: '{{ item.repository }}'
+    dest: "{{ ansible_env.HOME }}/.vim/{{ item.name }}"
+  with_items:
+    - name: editorconfig-vim
+      repository: https://github.com/editorconfig/editorconfig-vim.git
+
 - name: Ensure SSH dotfiles symlinks are set with correct permissions
   file:
     src: "{{ ansible_env.HOME}}/dotfiles/ssh/{{ item }}"
@@ -53,6 +61,7 @@
   with_items:
     - ansible.cfg
     - curlrc
+    - editorconfig
     - gitconfig
     - screenrc
     - vimrc
