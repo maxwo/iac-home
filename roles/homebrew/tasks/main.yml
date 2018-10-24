@@ -5,4 +5,5 @@
   homebrew:
     update_homebrew: yes
     upgrade_all: yes
+  notify: Clean old Homebrew versions
   tags: packages, macosx
