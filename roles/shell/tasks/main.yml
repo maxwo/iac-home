@@ -18,6 +18,7 @@
     - PATH: /bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin
   with_items:
     - editorconfig
+    - htop
     - jq
     - lnav
     - screen

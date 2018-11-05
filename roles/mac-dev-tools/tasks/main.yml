@@ -1,10 +1,10 @@
 ---
 # Tasks for roles
 
-- name: Ensure gems are installed
+- name: Ensure legacy gems are removed
   gem:
     name: "{{ item }}"
-    state: latest
+    state: absent
   environment:
     GEM_HOME: ~/.gem
     GEM_PATH: ~/.gem
@@ -27,6 +27,7 @@
     - dos2unix
     - gcc
     - git
+    - glide
     - golang
     - gom
     - gperftools
@@ -37,12 +38,9 @@
     - kubernetes-helm
     - maven
     - python3
+    - telnet
+    - travis
     - yarn
-
-- name: Ensure non-edge Docker is removed
-  homebrew_cask:
-    name: docker
-    state: absent
 
 - name: Ensure legacy dev applications are remove
   homebrew_cask:
@@ -50,12 +48,24 @@
     state: absent
   with_items:
     - sublime-text
+    - docker
+    - sourcetree
+
+- name: Ensure extra taps are available
+  homebrew_tap:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - AdoptOpenJDK/openjdk
 
 - name: Ensure dev applications are installed
   homebrew_cask:
     name: "{{ item }}"
     state: present
   with_items:
+    - adoptopenjdk-openjdk8
+    - adoptopenjdk-openjdk9
+    - adoptopenjdk-openjdk10
     - atom
     - docker-edge
     - eclipse-java
@@ -63,12 +73,21 @@
     - google-chrome-canary
     - iterm2
     - java
+    - java6
+    - java8
+    - meld
+    - minishift
+    - mongodb-compass
     - oracle-jdk
+    - postbird
     - postman
-    - sourcetree
+    - r-app
+    - rstudio
     - vagrant
     - virtualbox
     - visual-studio-code
+    - xquartz
+    - yed
 
 - name: Ensure Lombok destination is created
   file:

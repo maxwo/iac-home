@@ -7,14 +7,19 @@
     state: absent
   with_items:
    - flux
+   - marp
+   - skype
 
 - name: Ensure applications are installed
   homebrew_cask:
     name: "{{ item }}"
     state: present
   with_items:
+   - adobe-acrobat-reader
+   - cgoban
    - dropbox
    - firefox
+   - gimp
    - google-chrome
    - google-hangouts
    - gpg-suite

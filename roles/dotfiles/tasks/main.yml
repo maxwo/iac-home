@@ -49,8 +49,11 @@
     src: "{{ ansible_env.HOME}}/dotfiles/gnupg/{{ item }}"
     dest: "{{ ansible_env.HOME }}/.gnupg/{{ item }}"
     state: link
+    force: yes
   with_items:
     - gpg.conf
+  tags:
+    - dotfiles
 
 - name: Ensure dotfiles standard symlinks are set
   file:

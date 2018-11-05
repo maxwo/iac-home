@@ -3,4 +3,4 @@ lombok_url: https://projectlombok.org/downloads/lombok.jar
 lombok_install_path: "{{ ansible_env.HOME }}/lombok"
 lombok_install_file: "{{ lombok_install_path }}/lombok.jar"
 
-eclipse_ini_paths: "/Applications/Eclipse*.app/Contents/Eclipse/eclipse.ini"
+eclipse_ini_paths: "/Applications/Eclipse.app/Contents/Eclipse/eclipse.ini"

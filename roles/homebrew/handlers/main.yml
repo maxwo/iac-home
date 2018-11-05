@@ -1,0 +1,6 @@
+---
+# handlers file for roles/mac-node
+
+- name: Clean old Homebrew versions
+  shell:
+    cmd: /usr/local/bin/brew cleanup

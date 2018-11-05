@@ -6,4 +6,12 @@
     update_homebrew: yes
     upgrade_all: yes
   notify: Clean old Homebrew versions
-  tags: packages, macosx
+  tags: packages, macosx, upgrade
+
+- name: Ensure Homebrew casks are up to date
+  homebrew_cask:
+    upgrade_all: yes
+  tags: packages, macosx, upgrade
+
+- name: Ensure older versions are cleaned-up
+  meta: flush_handlers
