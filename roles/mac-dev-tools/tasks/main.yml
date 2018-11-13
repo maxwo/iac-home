@@ -15,13 +15,13 @@
 - name: Ensure Node is installed with NPM
   homebrew:
     name: node
-    state: latest
+    state: present
     install_options: with-npm
 
 - name: Ensure Homebrew packages are installed
   homebrew:
     name: "{{ item }}"
-    state: latest
+    state: present
   with_items:
     - awscli
     - dos2unix
@@ -78,6 +78,7 @@
     - meld
     - minishift
     - mongodb-compass
+    - openshift-cli
     - oracle-jdk
     - postbird
     - postman

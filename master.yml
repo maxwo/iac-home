@@ -11,6 +11,8 @@
       with_items:
         - dmidecode
         - python-pip
+  roles:
+    - debian-shell
 
 - hosts: all
   roles:

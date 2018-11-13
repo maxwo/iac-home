@@ -1,13 +1,9 @@
 ---
 # tasks file for roles/mac-node
 - name: Ensure node exporter is available
-  get_url:
-    url: "{{ node_exporter_url }}"
-    dest: "/tmp/{{ node_exporter_url_filename }}"
-    remote_src: yes
-  vars:
-    ansible_python_interpreter: /usr/local/bin/python
-  notify: Install node exporter
+  homebrew:
+    name: node_exporter
+    state: present
 
 - name: Ensure node exporter daemon is declared
   template:

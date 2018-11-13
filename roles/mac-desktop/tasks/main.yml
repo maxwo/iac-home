@@ -28,3 +28,4 @@
    - transmission
    - vlc
    - whatsapp
+  ignore_errors: true
