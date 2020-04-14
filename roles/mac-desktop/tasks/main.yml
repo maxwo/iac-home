@@ -6,6 +6,7 @@
     name: "{{ item }}"
     state: absent
   with_items:
+   - cgoban
    - flux
    - marp
    - skype
@@ -16,7 +17,6 @@
     state: present
   with_items:
    - adobe-acrobat-reader
-   - cgoban
    - dropbox
    - firefox
    - gimp

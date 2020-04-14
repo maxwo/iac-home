@@ -12,12 +12,6 @@
    - travis
    - rhc
 
-- name: Ensure Node is installed with NPM
-  homebrew:
-    name: node
-    state: present
-    install_options: with-npm
-
 - name: Ensure Homebrew packages are installed
   homebrew:
     name: "{{ item }}"
@@ -37,6 +31,8 @@
     - kops
     - kubernetes-helm
     - maven
+    - node
+    - openshift-cli
     - python3
     - telnet
     - travis
@@ -63,29 +59,31 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - adoptopenjdk-openjdk8
-    - adoptopenjdk-openjdk9
-    - adoptopenjdk-openjdk10
+    # - adoptopenjdk8
+    - adoptopenjdk9
+    - adoptopenjdk10
+    - adoptopenjdk11
+    - adoptopenjdk12
+    - adoptopenjdk13
+    - adoptopenjdk14
     - atom
-    - docker-edge
+    - homebrew/cask-versions/docker-edge
     - eclipse-java
-    - firefoxnightly
-    - google-chrome-canary
+    - firefox-nightly
+    - homebrew/cask-versions/google-chrome-canary
     - iterm2
     - java
-    - java6
-    - java8
+    - java11
     - meld
     - minishift
     - mongodb-compass
-    - openshift-cli
     - oracle-jdk
     - postbird
     - postman
-    - r-app
+    - r
     - rstudio
     - vagrant
-    - virtualbox
+    # - virtualbox
     - visual-studio-code
     - xquartz
     - yed
