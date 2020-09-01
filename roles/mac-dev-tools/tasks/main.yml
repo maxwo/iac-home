@@ -9,8 +9,8 @@
     GEM_HOME: ~/.gem
     GEM_PATH: ~/.gem
   with_items:
-   - travis
-   - rhc
+    - travis
+    - rhc
 
 - name: Ensure Homebrew packages are installed
   homebrew:
@@ -26,6 +26,8 @@
     - gom
     - gperftools
     - gpg
+    - k9s
+    - kubectx
     - lnav
     - hg
     - kops
@@ -70,6 +72,7 @@
     - homebrew/cask-versions/docker-edge
     - eclipse-java
     - firefox-nightly
+    - google-cloud-sdk
     - homebrew/cask-versions/google-chrome-canary
     - iterm2
     - java
