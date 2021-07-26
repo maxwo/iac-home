@@ -10,6 +10,7 @@
    - flux
    - marp
    - skype
+   - google-hangouts
 
 - name: Ensure applications are installed
   homebrew_cask:
@@ -21,7 +22,6 @@
    - firefox
    - gimp
    - google-chrome
-   - google-hangouts
    - gpg-suite
    - keepassx
    - slack

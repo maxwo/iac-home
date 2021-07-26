@@ -48,6 +48,8 @@
     - sublime-text
     - docker
     - sourcetree
+    - java
+    - java11
 
 - name: Ensure extra taps are available
   homebrew_tap:
@@ -68,6 +70,8 @@
     - adoptopenjdk12
     - adoptopenjdk13
     - adoptopenjdk14
+    - adoptopenjdk15
+    - adoptopenjdk16
     - atom
     - homebrew/cask-versions/docker-edge
     - eclipse-java
@@ -75,8 +79,6 @@
     - google-cloud-sdk
     - homebrew/cask-versions/google-chrome-canary
     - iterm2
-    - java
-    - java11
     - meld
     - minishift
     - mongodb-compass
@@ -123,7 +125,7 @@
     - grunt-cli
     - gulp-cli
     - npm-check-updates
-    - vue-cli
+    - "@vue/cli"
   tags: js
 
 - name: Ensure Atom plugins are up to date
